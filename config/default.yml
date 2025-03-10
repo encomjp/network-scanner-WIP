@@ -1,0 +1,83 @@
+# Network Scanner Default Configuration
+
+# General Settings
+general:
+  # Enable stealth mode by default (slower but less detectable)
+  stealth_mode: false
+  
+  # Default scan target (can be overridden by CLI arguments)
+  # default_target: "192.168.1.0/24"
+  
+  # Logging settings
+  logging:
+    # Log level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+    level: "INFO"
+    
+    # Whether to log to file by default
+    log_to_file: false
+    
+    # Default log file path (if log_to_file is true)
+    # log_file: "/var/log/network_scanner.log"
+    
+    # Maximum log file size in bytes before rotation
+    max_file_size: 10485760  # 10 MB
+    
+    # Number of backup log files to keep
+    backup_count: 5
+
+# Discovery Settings
+discovery:
+  # Ping scanner settings
+  ping_scanner:
+    # Default timeout in seconds
+    timeout: 1.0
+    
+    # Number of ping packets to send
+    count: 1
+    
+    # Scan interval in seconds (for continuous scanning)
+    interval: 300  # 5 minutes
+    
+    # Maximum number of concurrent pings
+    concurrent_pings: 10
+    
+    # Delay between pings in stealth mode (seconds)
+    stealth_delay: 0.5
+
+# Service Detection Settings
+service_detection:
+  # Port scanner settings
+  port_scanner:
+    # Default timeout in seconds
+    timeout: 1.0
+    
+    # Scan interval in seconds (for continuous scanning)
+    interval: 3600  # 1 hour
+    
+    # Maximum number of concurrent port scans
+    concurrent_scans: 50
+    
+    # Delay between port scans in stealth mode (seconds)
+    stealth_delay: 0.2
+    
+    # Whether to randomize the order of ports scanned
+    randomize_ports: true
+    
+    # Default ports to scan (comma-separated list or ranges)
+    # If not specified, common ports will be scanned
+    ports: "21,22,23,25,53,80,110,111,135,139,143,443,445,993,995,1723,3306,3389,5900,8080"
+
+# Fingerprinting Settings
+fingerprinting:
+  # OS detection settings
+  os_detection:
+    # Enable OS detection
+    enabled: true
+    
+    # Confidence threshold for OS detection (0.0 - 1.0)
+    confidence_threshold: 0.7
+
+# Vulnerability Scanning Settings
+vulnerability:
+  # Enable vulnerability scanning
+  enabled: false 

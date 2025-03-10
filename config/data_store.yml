@@ -1,0 +1,82 @@
+# Data Store Configuration
+
+# JSONStore settings
+json_store:
+  # Directory to store data files
+  data_dir: "data"
+  
+  # Auto-save data after changes
+  auto_save: true
+  
+  # Save interval in seconds (only applies if auto_save is true)
+  save_interval: 60
+  
+  # Schema definitions for data types
+  schemas:
+    devices:
+      required:
+        - ip
+        - timestamp
+      properties:
+        ip:
+          type: string
+          description: IP address of the device
+        status:
+          type: string
+          description: Status of the device (up, down)
+        method:
+          type: string
+          description: Method used to discover the device
+        timestamp:
+          type: string
+          description: ISO8601 timestamp of when the device was discovered
+          
+    services:
+      required:
+        - ip
+        - port
+        - protocol
+        - timestamp
+      properties:
+        ip:
+          type: string
+          description: IP address of the host
+        port:
+          type: integer
+          description: Port number
+        protocol:
+          type: string
+          description: Protocol (tcp, udp)
+        service:
+          type: string
+          description: Service name
+        state:
+          type: string
+          description: State of the service (open, closed, filtered)
+        banner:
+          type: string
+          description: Service banner (if available)
+        timestamp:
+          type: string
+          description: ISO8601 timestamp of when the service was detected
+          
+    fingerprints:
+      required:
+        - ip
+        - timestamp
+      properties:
+        ip:
+          type: string
+          description: IP address of the host
+        os:
+          type: string
+          description: Detected operating system
+        confidence:
+          type: number
+          description: Confidence score (0.0-1.0)
+        ttl:
+          type: integer
+          description: TTL value
+        timestamp:
+          type: string
+          description: ISO8601 timestamp of when the fingerprint was created 
