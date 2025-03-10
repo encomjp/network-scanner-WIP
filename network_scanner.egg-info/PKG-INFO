@@ -1,3 +1,39 @@
+Metadata-Version: 2.2
+Name: network_scanner
+Version: 0.1.0
+Summary: A modular, stealthy network scanner
+Home-page: https://github.com/username/network-scanner
+Author: Adrian
+Author-email: adrian@example.com
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: System :: Networking
+Classifier: Topic :: Security
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: scapy>=2.4.5
+Requires-Dist: python-nmap>=0.7.1
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: rich>=12.0.0
+Requires-Dist: python-dotenv>=0.19.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
 # Network Scanner
 
 A sophisticated, modular network scanner designed for Linux and macOS that discovers devices, identifies operating systems, detects running services, and scans for vulnerabilities.
@@ -53,26 +89,6 @@ netscanner --debug scan --target 192.168.1.0/24
 # Save debug logs to file
 netscanner --debug --log-file=debug.log scan --target 192.168.1.0/24
 ```
-
-## Nmap Integration
-
-The network scanner now includes Nmap integration for enhanced service and vulnerability detection. With this integration, you can scan targets for open ports and perform vulnerability scanning using Nmap scripts.
-
-### Usage
-
-Use the following command to perform an Nmap scan:
-
-    venv/bin/python3 -m network_scanner.ui.cli.main nmap --target <TARGET_IP_OR_HOSTNAME> [--ports <PORTS>] [--vuln]
-
-- --target: Specify the target IP address or hostname.
-- --ports: (Optional) Comma-separated list or range of ports to scan (e.g. '80,443,8080-8090').
-- --vuln: (Optional) Enable vulnerability scanning using Nmap scripts.
-
-### Example
-
-    venv/bin/python3 -m network_scanner.ui.cli.main nmap --target 192.168.1.254 --ports 22,80,443 --vuln
-
-This will perform a scan on the target, listing open services and checking for known vulnerabilities.
 
 ## Development
 

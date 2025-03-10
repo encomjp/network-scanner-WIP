@@ -729,6 +729,31 @@ def debug_info() -> None:
             
         console.print(data_table)
 
+@cli.command()
+@click.option("--target", "-t", required=True, help="Target to scan using Nmap (IP or hostname).")
+@click.option("--ports", "-p", help="Ports to scan (comma-separated or range, e.g., '80,443,8080-8090').")
+@click.option("--vuln/--no-vuln", default=False, help="Enable vulnerability scanning using Nmap scripts.")
+def nmap(target: str, ports: str, vuln: bool) -> None:
+    """
+    Perform a network scan using Nmap.
+    """
+    import click
+    from pprint import pprint
+    from network_scanner.service_detection.nmap_scanner import NmapScanner
+    scanner = NmapScanner()
+    config = {
+         "target": target,
+         "ports": ports,
+         "scan_arguments": "-sV",
+         "scan_vulns": vuln,
+    }
+    if not scanner.initialize(config):
+        click.echo("Failed to initialize NmapScanner")
+        return
+    click.echo(f"Starting Nmap scan on {target}...")
+    results = scanner.scan(target, ports)
+    pprint(results)
+
 def main() -> None:
     """Main entry point for the CLI application."""
     try:

@@ -1,0 +1,2 @@
+[console_scripts]
+netscanner = network_scanner.ui.cli.main:main

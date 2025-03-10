@@ -1,0 +1,32 @@
+[
+  {
+    "ip": "192.168.1.254",
+    "port": 22,
+    "protocol": "tcp",
+    "state": "open",
+    "service": "ssh",
+    "banner": "SSH-2.0-ROSSSH",
+    "timestamp": "2025-03-10T12:43:37.898069"
+  },
+  {
+    "ip": "192.168.1.254",
+    "port": 22,
+    "protocol": "tcp",
+    "state": "open",
+    "service": "ssh",
+    "banner": "SSH-2.0-ROSSSH",
+    "timestamp": "2025-03-10T12:44:45.189596"
+  },
+  {
+    "ip": "192.168.1.254",
+    "port": 22,
+    "protocol": "tcp",
+    "state": "open",
+    "service": "ssh",
+    "product": "MikroTik RouterOS sshd",
+    "version": "",
+    "extrainfo": "protocol 2.0",
+    "os_type": "unknown",
+    "timestamp": "2025-03-10T13:22:17.117177"
+  }
+]
