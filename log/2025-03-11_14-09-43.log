@@ -1,0 +1,36 @@
+2025-03-11 14:09:43,815 - INFO - launcher - Logging to file: log/2025-03-11_14-09-43.log
+2025-03-11 14:09:43,816 - INFO - launcher - Starting Network Scanner...
+2025-03-11 14:09:43,816 - INFO - launcher - Starting API server thread...
+2025-03-11 14:09:43,816 - INFO - launcher - Starting Web server thread...
+2025-03-11 14:09:43,816 - INFO - launcher - Starting Flask web server on http://127.0.0.1:5002
+2025-03-11 14:09:43,816 - INFO - launcher - Waiting for API server to start...
+2025-03-11 14:09:43,816 - DEBUG - network_scanner.core.event_bus - EventBus initialized
+2025-03-11 14:09:43,817 - DEBUG - network_scanner.core.plugin_manager - PluginManager initialized
+2025-03-11 14:09:43,828 - DEBUG - network_scanner.core.config_manager - ConfigManager initialized
+2025-03-11 14:09:43,829 - DEBUG - network_scanner.core.scheduler - Scheduler initialized
+2025-03-11 14:09:43,829 - DEBUG - network_scanner.core.scheduler - AsyncScheduler initialized
+2025-03-11 14:09:44,066 [INFO] root (logging_setup.py:84): Logging initialized with level INFO
+2025-03-11 14:09:44,066 [INFO] root (logging_setup.py:88): Logging to file: log/2025-03-11_14-09-43.log
+2025-03-11 14:09:44,066 [INFO] network_scanner.backend.api.server (server.py:33): API server logging to file: log/2025-03-11_14-09-43.log
+2025-03-11 14:09:44,075 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.0/24
+2025-03-11 14:09:44,076 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:84): PortScanner initialized without target
+2025-03-11 14:09:44,076 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:69): NmapScanner initialized without target
+2025-03-11 14:09:44,084 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:74): Nmap detected: Nmap version 7.95 ( https://nmap.org )
+2025-03-11 14:09:44,084 [INFO] network_scanner.fingerprinting.ttl_analyzer (ttl_analyzer.py:62): TTLAnalyzer initialized without target
+2025-03-11 14:09:44,091 [INFO] launcher (launcher.py:64): Starting FastAPI server on http://127.0.0.1:8000
+2025-03-11 14:09:44,094 [INFO] network_scanner.web (app.py:44): Flask application logging to file: log/2025-03-11_14-09-43.log
+2025-03-11 14:09:44,100 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.0/24
+2025-03-11 14:09:44,100 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:84): PortScanner initialized without target
+2025-03-11 14:09:44,100 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:69): NmapScanner initialized without target
+2025-03-11 14:09:44,108 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:74): Nmap detected: Nmap version 7.95 ( https://nmap.org )
+2025-03-11 14:09:44,108 [INFO] network_scanner.fingerprinting.ttl_analyzer (ttl_analyzer.py:62): TTLAnalyzer initialized without target
+2025-03-11 14:09:44,108 [INFO] launcher (launcher.py:70): Scanner service initialization: Success
+2025-03-11 14:09:44,126 [INFO] uvicorn.error (server.py:83): Started server process [83360]
+2025-03-11 14:09:44,126 [INFO] uvicorn.error (on.py:48): Waiting for application startup.
+2025-03-11 14:09:44,127 [INFO] uvicorn.error (on.py:62): Application startup complete.
+2025-03-11 14:09:44,127 [ERROR] uvicorn.error (server.py:171): [Errno 48] error while attempting to bind on address ('127.0.0.1', 8000): [errno 48] address already in use
+2025-03-11 14:09:44,127 [INFO] uvicorn.error (on.py:67): Waiting for application shutdown.
+2025-03-11 14:09:44,127 [INFO] uvicorn.error (on.py:76): Application shutdown complete.
+2025-03-11 14:09:45,821 [INFO] launcher (launcher.py:153): Both servers started. Press Ctrl+C to exit.
+2025-03-11 14:09:46,427 [INFO] launcher (launcher.py:117): Shutting down servers...
+2025-03-11 14:09:47,429 [INFO] launcher (launcher.py:124): Shutdown complete. Log file: log/2025-03-11_14-09-43.log

@@ -24,6 +24,11 @@ Requires-Dist: pyyaml>=6.0
 Requires-Dist: click>=8.0.0
 Requires-Dist: rich>=12.0.0
 Requires-Dist: python-dotenv>=0.19.0
+Requires-Dist: fastapi>=0.95.0
+Requires-Dist: uvicorn>=0.21.0
+Requires-Dist: flask>=2.0.0
+Requires-Dist: requests>=2.25.0
+Requires-Dist: flask-cors>=3.0.10
 Dynamic: author
 Dynamic: author-email
 Dynamic: classifier
@@ -46,6 +51,8 @@ A sophisticated, modular network scanner designed for Linux and macOS that disco
 - **Multiple Scanning Modes**: From passive discovery to active vulnerability scanning
 - **Stealth Options**: Configure scan timing and patterns to avoid detection
 - **CLI Interface**: Powerful command-line interface with debugging capabilities
+- **RESTful API**: Backend API for integration with other tools or custom frontends
+- **Web UI**: User-friendly web interface for easier interaction
 
 ## Installation
 
@@ -67,7 +74,7 @@ pip install -e .
 
 ## Usage
 
-### Basic Network Scan
+### Command-Line Interface
 
 ```bash
 # Scan the local network
@@ -89,6 +96,96 @@ netscanner --debug scan --target 192.168.1.0/24
 # Save debug logs to file
 netscanner --debug --log-file=debug.log scan --target 192.168.1.0/24
 ```
+
+## Nmap Integration
+
+The network scanner includes Nmap integration for enhanced service and vulnerability detection. With this integration, you can scan targets for open ports and perform vulnerability scanning using Nmap scripts.
+
+### Usage
+
+Use the following command to perform an Nmap scan:
+
+    venv/bin/python3 -m network_scanner.ui.cli.main nmap --target <TARGET_IP_OR_HOSTNAME> [--ports <PORTS>] [--vuln]
+
+- --target: Specify the target IP address or hostname.
+- --ports: (Optional) Comma-separated list or range of ports to scan (e.g. '80,443,8080-8090').
+- --vuln: (Optional) Enable vulnerability scanning using Nmap scripts.
+
+### Example
+
+    venv/bin/python3 -m network_scanner.ui.cli.main nmap --target 192.168.1.254 --ports 22,80,443 --vuln
+
+This will perform a scan on the target, listing open services and checking for known vulnerabilities.
+
+## Backend API
+
+The network scanner provides a RESTful API that can be used to integrate with other tools or to build custom frontends.
+
+### Starting the API Server
+
+```bash
+# Start the API server on localhost:8000
+netscanner-api
+
+# Specify host and port
+netscanner-api --host 0.0.0.0 --port 8080
+
+# Enable debug mode
+netscanner-api --debug
+```
+
+### API Endpoints
+
+- `GET /` - API information
+- `GET /api/health` - Health check
+- `POST /api/discover` - Discover devices on the network
+- `POST /api/port-scan` - Scan ports on a target
+- `POST /api/nmap-scan` - Perform an Nmap scan
+- `POST /api/fingerprint` - Perform OS fingerprinting
+
+### Example API Request
+
+```bash
+# Discover devices on the network
+curl -X POST "http://localhost:8000/api/discover" \
+  -H "Content-Type: application/json" \
+  -d '{"target": "192.168.1.0/24", "passive": false, "stealth": false, "timeout": 1.0}'
+```
+
+## Web Interface
+
+The network scanner includes a web-based user interface for easier interaction with the scanning features.
+
+### Starting the Web Interface
+
+```bash
+# Start the web interface on localhost:5000
+netscanner-web
+
+# Specify host and port
+FLASK_HOST=0.0.0.0 FLASK_PORT=8080 netscanner-web
+
+# Enable debug mode
+FLASK_DEBUG=true netscanner-web
+```
+
+### Web UI Features
+
+- **Dashboard**: Overview of recent scan results
+- **Device Discovery**: Discover devices on your network
+- **Port Scanning**: Scan for open ports and services
+- **OS Fingerprinting**: Identify operating systems
+- **Nmap Scanning**: Perform comprehensive Nmap scans
+- **Results Viewer**: View and manage scan results
+
+### Configuration
+
+The web interface can be configured using environment variables:
+
+- `FLASK_HOST`: Host to bind the web server to (default: 127.0.0.1)
+- `FLASK_PORT`: Port to bind the web server to (default: 5000)
+- `FLASK_DEBUG`: Enable debug mode (default: False)
+- `API_BASE_URL`: URL of the backend API server (default: http://localhost:8000)
 
 ## Development
 

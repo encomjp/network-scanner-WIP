@@ -1,0 +1,37 @@
+2025-03-11 12:07:51,584 - INFO - test_server - Logging to file: log/test_server_2025-03-11_12-07-51.log
+2025-03-11 12:07:51,585 - INFO - test_server - Starting test server on http://127.0.0.1:5001
+2025-03-11 12:07:51,612 - INFO - werkzeug - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2025-03-11 12:07:51,613 - INFO - werkzeug - [33mPress CTRL+C to quit[0m
+2025-03-11 12:07:51,613 - INFO - werkzeug -  * Restarting with stat
+2025-03-11 12:07:51,706 - INFO - test_server - Logging to file: log/test_server_2025-03-11_12-07-51.log
+2025-03-11 12:07:51,707 - INFO - test_server - Starting test server on http://127.0.0.1:5001
+2025-03-11 12:07:51,723 - WARNING - werkzeug -  * Debugger is active!
+2025-03-11 12:07:51,728 - INFO - werkzeug -  * Debugger PIN: 960-140-736
+2025-03-11 12:07:56,403 - DEBUG - test_server - Request Headers: {'Host': 'localhost:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+2025-03-11 12:07:56,403 - DEBUG - test_server - Request Method: GET
+2025-03-11 12:07:56,403 - DEBUG - test_server - Request URL: http://localhost:5001/
+2025-03-11 12:07:56,403 - DEBUG - test_server - Request Remote Address: 127.0.0.1
+2025-03-11 12:07:56,403 - INFO - test_server - Index endpoint called
+2025-03-11 12:07:56,403 - DEBUG - test_server - Response Status before CORS: 200
+2025-03-11 12:07:56,403 - DEBUG - test_server - Response Headers before CORS: {'Content-Type': 'application/json', 'Content-Length': '61'}
+2025-03-11 12:07:56,403 - DEBUG - test_server - Response Status after CORS: 200
+2025-03-11 12:07:56,403 - DEBUG - test_server - Response Headers after CORS: {'Content-Type': 'application/json', 'Content-Length': '61', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-03-11 12:07:56,404 - INFO - werkzeug - 127.0.0.1 - - [11/Mar/2025 12:07:56] "GET / HTTP/1.1" 200 -
+2025-03-11 12:08:10,286 - DEBUG - test_server - Request Headers: {'Host': 'localhost:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+2025-03-11 12:08:10,286 - DEBUG - test_server - Request Method: GET
+2025-03-11 12:08:10,286 - DEBUG - test_server - Request URL: http://localhost:5001/api/error
+2025-03-11 12:08:10,286 - DEBUG - test_server - Request Remote Address: 127.0.0.1
+2025-03-11 12:08:10,286 - INFO - test_server - Error endpoint called
+2025-03-11 12:08:10,287 - DEBUG - test_server - Response Status before CORS: 403
+2025-03-11 12:08:10,287 - DEBUG - test_server - Response Headers before CORS: {'Content-Type': 'application/json', 'Content-Length': '56'}
+2025-03-11 12:08:10,287 - DEBUG - test_server - Response Status after CORS: 403
+2025-03-11 12:08:10,287 - DEBUG - test_server - Response Headers after CORS: {'Content-Type': 'application/json', 'Content-Length': '56', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-03-11 12:08:10,287 - WARNING - test_server - Response failed with status 403
+2025-03-11 12:08:10,287 - WARNING - test_server - Request URL: http://localhost:5001/api/error
+2025-03-11 12:08:10,287 - WARNING - test_server - Request Method: GET
+2025-03-11 12:08:10,287 - WARNING - test_server - Request Headers: {'Host': 'localhost:5001', 'User-Agent': 'curl/8.7.1', 'Accept': '*/*'}
+2025-03-11 12:08:10,287 - WARNING - test_server - Response Headers: {'Content-Type': 'application/json', 'Content-Length': '56', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH', 'Access-Control-Allow-Headers': '*', 'Access-Control-Allow-Credentials': 'true'}
+2025-03-11 12:08:10,287 - INFO - werkzeug - 127.0.0.1 - - [11/Mar/2025 12:08:10] "[31m[1mGET /api/error HTTP/1.1[0m" 403 -
+2025-03-11 12:08:58,595 - INFO - werkzeug -  * Detected change in '/Users/adrian/Documents/network-scanner./extract_logs.py', reloading
+2025-03-11 12:08:58,618 - INFO - werkzeug -  * Restarting with stat

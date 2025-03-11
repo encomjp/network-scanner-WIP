@@ -1,0 +1,446 @@
+2025-03-11 14:14:46,558 - INFO - launcher - Logging to file: log/2025-03-11_14-14-46.log
+2025-03-11 14:14:46,558 - INFO - launcher - Starting Network Scanner...
+2025-03-11 14:14:46,559 - INFO - launcher - Starting API server thread...
+2025-03-11 14:14:46,559 - INFO - launcher - Starting Web server thread...
+2025-03-11 14:14:46,559 - INFO - launcher - Starting Flask web server on http://127.0.0.1:5002
+2025-03-11 14:14:46,559 - INFO - launcher - Waiting for API server to start...
+2025-03-11 14:14:46,559 - DEBUG - network_scanner.core.event_bus - EventBus initialized
+2025-03-11 14:14:46,560 - DEBUG - network_scanner.core.plugin_manager - PluginManager initialized
+2025-03-11 14:14:46,592 - DEBUG - network_scanner.core.config_manager - ConfigManager initialized
+2025-03-11 14:14:46,594 - DEBUG - network_scanner.core.scheduler - Scheduler initialized
+2025-03-11 14:14:46,595 - DEBUG - network_scanner.core.scheduler - AsyncScheduler initialized
+2025-03-11 14:14:46,813 [INFO] root (logging_setup.py:84): Logging initialized with level INFO
+2025-03-11 14:14:46,813 [INFO] root (logging_setup.py:88): Logging to file: log/2025-03-11_14-14-46.log
+2025-03-11 14:14:46,813 [INFO] network_scanner.backend.api.server (server.py:33): API server logging to file: log/2025-03-11_14-14-46.log
+2025-03-11 14:14:46,821 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.0/24
+2025-03-11 14:14:46,822 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:84): PortScanner initialized without target
+2025-03-11 14:14:46,822 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:69): NmapScanner initialized without target
+2025-03-11 14:14:46,830 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:74): Nmap detected: Nmap version 7.95 ( https://nmap.org )
+2025-03-11 14:14:46,830 [INFO] network_scanner.fingerprinting.ttl_analyzer (ttl_analyzer.py:62): TTLAnalyzer initialized without target
+2025-03-11 14:14:46,833 [INFO] launcher (launcher.py:64): Starting FastAPI server on http://127.0.0.1:8000
+2025-03-11 14:14:46,837 [INFO] network_scanner.web (app.py:44): Flask application logging to file: log/2025-03-11_14-14-46.log
+2025-03-11 14:14:46,841 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.0/24
+2025-03-11 14:14:46,841 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:84): PortScanner initialized without target
+2025-03-11 14:14:46,841 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:69): NmapScanner initialized without target
+2025-03-11 14:14:46,849 [INFO] network_scanner.service_detection.nmap_scanner (nmap_scanner.py:74): Nmap detected: Nmap version 7.95 ( https://nmap.org )
+2025-03-11 14:14:46,849 [INFO] network_scanner.fingerprinting.ttl_analyzer (ttl_analyzer.py:62): TTLAnalyzer initialized without target
+2025-03-11 14:14:46,849 [INFO] launcher (launcher.py:70): Scanner service initialization: Success
+2025-03-11 14:14:46,867 [INFO] werkzeug (_internal.py:97): [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5002
+2025-03-11 14:14:46,868 [INFO] werkzeug (_internal.py:97): [33mPress CTRL+C to quit[0m
+2025-03-11 14:14:46,869 [INFO] uvicorn.error (server.py:83): Started server process [83720]
+2025-03-11 14:14:46,869 [INFO] uvicorn.error (on.py:48): Waiting for application startup.
+2025-03-11 14:14:46,869 [INFO] uvicorn.error (on.py:62): Application startup complete.
+2025-03-11 14:14:46,869 [INFO] uvicorn.error (server.py:215): Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-03-11 14:14:48,564 [INFO] launcher (launcher.py:153): Both servers started. Press Ctrl+C to exit.
+2025-03-11 14:14:59,522 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:14:59] "GET / HTTP/1.1" 200 -
+2025-03-11 14:14:59,659 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:14:59] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2025-03-11 14:14:59,660 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:267): Starting port scan on target: 192.168.31.254
+2025-03-11 14:14:59,660 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:84): PortScanner initialized without target
+2025-03-11 14:14:59,660 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:202): Starting port scan of 192.168.31.254
+2025-03-11 14:14:59,697 [INFO] network_scanner.service_detection.port_scanner (port_scanner.py:269): Port scan completed. Found 1 open ports on 192.168.31.254
+2025-03-11 14:14:59,706 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:14:59,706 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:14:59,707 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:14:59,707 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:14:59,707 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:14:59,707 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:14:59,707 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:14:59,707 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:15:00,096 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:15:00,589 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:00] "GET /discover HTTP/1.1" 200 -
+2025-03-11 14:15:00,648 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:00] "[35m[1mGET /favicon.ico HTTP/1.1[0m" 204 -
+2025-03-11 14:15:02,235 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 17 ARP responses from 192.168.22.0/24
+2025-03-11 14:15:02,344 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 17 devices.
+2025-03-11 14:15:02,345 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 17 devices
+2025-03-11 14:15:02,345 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:15:03,350 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:03,351 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:15:03,351 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:15:03,352 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:04,621 [WARNING] network_scanner.web (app.py:141): API request timed out: /api/health
+2025-03-11 14:15:04,623 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:04] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:15:11,709 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:15:11,711 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59390 - "POST /api/port-scan HTTP/1.1" 200
+2025-03-11 14:15:11,711 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59389 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:11,714 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:11] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:11,715 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:11] "POST /api/port-scan HTTP/1.1" 200 -
+2025-03-11 14:15:11,724 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.31.254
+2025-03-11 14:15:11,724 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.31.254
+2025-03-11 14:15:11,724 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.31.254 has 1 potential hosts
+2025-03-11 14:15:11,724 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.31.254
+2025-03-11 14:15:11,724 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.31.254
+2025-03-11 14:15:11,724 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.31.254 is in private network range 192.168.0.0/16
+2025-03-11 14:15:11,724 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.31.254 is a local network
+2025-03-11 14:15:11,724 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.31.254
+2025-03-11 14:15:11,725 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.31.254 to network 192.168.31.0/24 for ARP scan
+2025-03-11 14:15:11,725 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.31.0/24
+2025-03-11 14:15:13,927 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 1 ARP responses from 192.168.31.0/24
+2025-03-11 14:15:13,943 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 1 devices.
+2025-03-11 14:15:13,944 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 1 devices
+2025-03-11 14:15:13,944 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:13,944 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.31.254
+2025-03-11 14:15:13,944 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.31.254 to scan
+2025-03-11 14:15:13,944 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:13,961 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 17 alive hosts.
+2025-03-11 14:15:13,961 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 17 devices on 192.168.31.254
+2025-03-11 14:15:13,971 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.31.254
+2025-03-11 14:15:13,972 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.31.254
+2025-03-11 14:15:13,972 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.31.254 has 1 potential hosts
+2025-03-11 14:15:13,976 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.31.254
+2025-03-11 14:15:13,977 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.31.254
+2025-03-11 14:15:13,978 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.31.254 is in private network range 192.168.0.0/16
+2025-03-11 14:15:13,978 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.31.254 is a local network
+2025-03-11 14:15:13,978 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.31.254
+2025-03-11 14:15:13,978 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.31.254 to network 192.168.31.0/24 for ARP scan
+2025-03-11 14:15:13,978 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.31.0/24
+2025-03-11 14:15:15,272 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 2 alive hosts.
+2025-03-11 14:15:15,273 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 2 devices on 192.168.22.0/24
+2025-03-11 14:15:16,069 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 1 ARP responses from 192.168.31.0/24
+2025-03-11 14:15:16,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 1 devices.
+2025-03-11 14:15:16,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 1 devices
+2025-03-11 14:15:16,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:16,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.31.254
+2025-03-11 14:15:16,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.31.254 to scan
+2025-03-11 14:15:16,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:16,107 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 4 alive hosts.
+2025-03-11 14:15:16,107 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 4 devices on 192.168.31.254
+2025-03-11 14:15:16,120 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:15:16,121 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:15:16,121 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:15:16,121 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:15:16,121 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:15:16,121 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:15:16,122 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:15:16,122 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:15:16,122 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:15:21,237 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 5 ARP responses from 192.168.22.0/24
+2025-03-11 14:15:21,242 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 5 devices.
+2025-03-11 14:15:21,243 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 5 devices
+2025-03-11 14:15:21,243 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:15:22,248 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:22,249 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:15:22,250 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:15:22,250 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:30,628 [WARNING] network_scanner.web (app.py:141): API request timed out: /api/discover
+2025-03-11 14:15:30,629 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:30] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:33,994 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 39 alive hosts.
+2025-03-11 14:15:33,995 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 39 devices on 192.168.22.0/24
+2025-03-11 14:15:33,996 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59400 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:33,996 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59409 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:33,996 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59412 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:33,999 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:33] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:34,001 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:34] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:34,003 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59418 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:15:34,011 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:34] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:15:34,012 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:73): Gateway detected on 192.168.31.254, suggesting network 192.168.31.0/24 instead of 192.168.1.254
+2025-03-11 14:15:34,012 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.1.254
+2025-03-11 14:15:34,013 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.254
+2025-03-11 14:15:34,013 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.1.254 has 1 potential hosts
+2025-03-11 14:15:34,013 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.1.254
+2025-03-11 14:15:34,014 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.1.254
+2025-03-11 14:15:34,014 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.1.254 is in private network range 192.168.0.0/16
+2025-03-11 14:15:34,014 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.1.254 is a local network
+2025-03-11 14:15:34,014 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.1.254
+2025-03-11 14:15:34,015 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.1.254 to network 192.168.1.0/24 for ARP scan
+2025-03-11 14:15:34,015 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.1.0/24
+2025-03-11 14:15:38,019 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.1.254, returning any partial results (0 devices found so far)
+2025-03-11 14:15:38,020 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59415 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:38,025 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:38] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:38,045 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:15:38,046 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:15:38,047 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:15:38,047 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:15:38,047 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:15:38,047 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:15:38,048 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:15:38,048 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:15:38,048 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:15:39,314 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 0 devices.
+2025-03-11 14:15:39,314 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:39,315 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.1.254
+2025-03-11 14:15:39,315 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.1.254 to scan
+2025-03-11 14:15:39,315 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:39,357 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 1 alive hosts.
+2025-03-11 14:15:39,358 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 1 devices on 192.168.1.254
+2025-03-11 14:15:40,280 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 4 ARP responses from 192.168.22.0/24
+2025-03-11 14:15:40,303 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 4 devices.
+2025-03-11 14:15:40,304 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 4 devices
+2025-03-11 14:15:40,304 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:15:41,310 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:41,310 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:15:41,311 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:15:41,312 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:50,050 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:15:50,054 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59421 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:50,057 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:50] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:50,070 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.0.1
+2025-03-11 14:15:50,070 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.0.1
+2025-03-11 14:15:50,071 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.0.1 has 1 potential hosts
+2025-03-11 14:15:50,071 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.0.1
+2025-03-11 14:15:50,071 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.0.1
+2025-03-11 14:15:50,071 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.0.1 is in private network range 192.168.0.0/16
+2025-03-11 14:15:50,071 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.0.1 is a local network
+2025-03-11 14:15:50,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.0.1
+2025-03-11 14:15:50,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.0.1 to network 192.168.0.0/24 for ARP scan
+2025-03-11 14:15:50,072 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.0.0/24
+2025-03-11 14:15:52,888 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 10 alive hosts.
+2025-03-11 14:15:52,888 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 10 devices on 192.168.22.0/24
+2025-03-11 14:15:54,075 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.0.1, returning any partial results (0 devices found so far)
+2025-03-11 14:15:54,076 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59424 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:15:54,079 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:15:54] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:15:54,093 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:15:54,094 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:15:54,095 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:15:54,095 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:15:54,095 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:15:54,095 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:15:54,095 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:15:54,095 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:15:54,095 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:15:55,416 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 0 devices.
+2025-03-11 14:15:55,416 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:55,416 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.0.1
+2025-03-11 14:15:55,416 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.0.1 to scan
+2025-03-11 14:15:55,417 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:15:56,213 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 1 ARP responses from 192.168.22.0/24
+2025-03-11 14:15:56,215 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 1 devices.
+2025-03-11 14:15:56,215 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 1 devices
+2025-03-11 14:15:56,215 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:15:56,438 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 1 alive hosts.
+2025-03-11 14:15:56,438 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 1 devices on 192.168.0.1
+2025-03-11 14:15:57,220 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:15:57,221 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:15:57,223 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:15:57,223 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:16:03,621 [WARNING] network_scanner.web (app.py:141): API request timed out: /api/health
+2025-03-11 14:16:03,622 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:03] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:16:06,112 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:16:06,122 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59429 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:16:06,125 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:06] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:16:06,140 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:73): Gateway detected on 192.168.31.254, suggesting network 192.168.31.0/24 instead of 192.168.1.1
+2025-03-11 14:16:06,141 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.1.1
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.1
+2025-03-11 14:16:06,141 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.1.1 has 1 potential hosts
+2025-03-11 14:16:06,141 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.1.1
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.1.1
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.1.1 is in private network range 192.168.0.0/16
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.1.1 is a local network
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.1.1
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.1.1 to network 192.168.1.0/24 for ARP scan
+2025-03-11 14:16:06,141 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.1.0/24
+2025-03-11 14:16:08,767 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 10 alive hosts.
+2025-03-11 14:16:08,769 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 10 devices on 192.168.22.0/24
+2025-03-11 14:16:10,148 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.1.1, returning any partial results (0 devices found so far)
+2025-03-11 14:16:10,149 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59432 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:16:10,153 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:10] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:16:10,167 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:16:10,169 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:16:10,170 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:16:10,170 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:16:10,171 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:16:10,171 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:16:10,172 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:16:10,172 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:16:10,172 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:16:11,369 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 0 devices.
+2025-03-11 14:16:11,369 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:16:11,369 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.1.1
+2025-03-11 14:16:11,369 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.1.1 to scan
+2025-03-11 14:16:11,369 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:16:12,312 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 1 ARP responses from 192.168.22.0/24
+2025-03-11 14:16:12,313 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 1 devices.
+2025-03-11 14:16:12,314 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 1 devices
+2025-03-11 14:16:12,314 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:16:12,383 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 1 alive hosts.
+2025-03-11 14:16:12,383 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 1 devices on 192.168.1.1
+2025-03-11 14:16:13,319 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:16:13,319 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:16:13,320 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:16:13,320 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:16:22,176 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:16:22,179 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59438 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:16:22,183 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:22] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:16:24,213 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:16:24,213 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:16:24,214 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:16:24,214 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:16:24,214 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:16:24,214 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:16:24,214 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:16:24,214 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:16:24,215 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:16:25,022 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 0 alive hosts.
+2025-03-11 14:16:25,023 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 0 devices on 192.168.22.0/24
+2025-03-11 14:16:26,359 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 5 ARP responses from 192.168.22.0/24
+2025-03-11 14:16:26,381 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 5 devices.
+2025-03-11 14:16:26,381 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 5 devices
+2025-03-11 14:16:26,381 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:16:27,384 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:16:27,384 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:16:27,384 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:16:27,384 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:16:34,158 [WARNING] network_scanner.web (app.py:141): API request timed out: /api/health
+2025-03-11 14:16:34,158 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:34] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:16:36,219 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:16:36,220 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59445 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:16:36,222 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:36] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:16:38,976 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 41 alive hosts.
+2025-03-11 14:16:38,979 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 41 devices on 192.168.22.0/24
+2025-03-11 14:16:39,162 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:16:39,163 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:16:39,163 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:16:39,163 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:16:39,163 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:16:39,163 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:16:39,163 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:16:39,163 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:16:39,163 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:16:41,353 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 12 ARP responses from 192.168.22.0/24
+2025-03-11 14:16:41,392 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 12 devices.
+2025-03-11 14:16:41,392 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 12 devices
+2025-03-11 14:16:41,392 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:16:42,400 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:16:42,401 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:16:42,401 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:16:42,401 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:16:51,163 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:16:51,164 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59454 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:16:51,165 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:16:51] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:16:54,101 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 44 alive hosts.
+2025-03-11 14:16:54,101 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 44 devices on 192.168.22.0/24
+2025-03-11 14:16:54,191 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.22.0/24
+2025-03-11 14:16:54,191 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.22.0/24
+2025-03-11 14:16:54,191 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.22.0/24 has 256 potential hosts
+2025-03-11 14:16:54,191 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 6.0 for 192.168.22.0/24
+2025-03-11 14:16:54,192 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.22.0/24
+2025-03-11 14:16:54,192 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.22.0/24 is in private network range 192.168.0.0/16
+2025-03-11 14:16:54,192 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.22.0/24 is a local network
+2025-03-11 14:16:54,192 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.22.0/24
+2025-03-11 14:16:54,192 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.22.0/24
+2025-03-11 14:16:56,330 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 3 ARP responses from 192.168.22.0/24
+2025-03-11 14:16:56,332 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 3 devices.
+2025-03-11 14:16:56,332 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 3 devices
+2025-03-11 14:16:56,332 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:193): Special handling for 192.168.22.0/24 network - adding delay
+2025-03-11 14:16:57,337 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:16:57,338 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.22.0/24
+2025-03-11 14:16:57,338 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:212): Prioritizing gateway and common IPs for 192.168.22.0/24
+2025-03-11 14:16:57,339 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:17:03,620 [WARNING] network_scanner.web (app.py:141): API request timed out: /api/health
+2025-03-11 14:17:03,621 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:17:03] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:17:06,197 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.22.0/24, returning any partial results (0 devices found so far)
+2025-03-11 14:17:06,201 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59457 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:17:06,208 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:17:06] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:17:08,893 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 38 alive hosts.
+2025-03-11 14:17:08,895 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 38 devices on 192.168.22.0/24
+2025-03-11 14:17:30,622 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59470 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:17:30,625 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:17:30] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:18:01,157 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59485 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:18:01,159 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:18:01] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:18:18,440 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.31.254
+2025-03-11 14:18:18,441 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.31.254
+2025-03-11 14:18:18,441 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.31.254 has 1 potential hosts
+2025-03-11 14:18:18,441 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.31.254
+2025-03-11 14:18:18,441 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.31.254
+2025-03-11 14:18:18,442 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.31.254 is in private network range 192.168.0.0/16
+2025-03-11 14:18:18,442 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.31.254 is a local network
+2025-03-11 14:18:18,442 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.31.254
+2025-03-11 14:18:18,442 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.31.254 to network 192.168.31.0/24 for ARP scan
+2025-03-11 14:18:18,442 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.31.0/24
+2025-03-11 14:18:22,447 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.31.254, returning any partial results (0 devices found so far)
+2025-03-11 14:18:22,449 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59492 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:18:22,453 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:18:22] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:18:22,477 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:73): Gateway detected on 192.168.31.254, suggesting network 192.168.31.0/24 instead of 192.168.1.254
+2025-03-11 14:18:22,478 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.1.254
+2025-03-11 14:18:22,478 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.254
+2025-03-11 14:18:22,478 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.1.254 has 1 potential hosts
+2025-03-11 14:18:22,478 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.1.254
+2025-03-11 14:18:22,478 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.1.254
+2025-03-11 14:18:22,478 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.1.254 is in private network range 192.168.0.0/16
+2025-03-11 14:18:22,478 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.1.254 is a local network
+2025-03-11 14:18:22,479 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.1.254
+2025-03-11 14:18:22,479 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.1.254 to network 192.168.1.0/24 for ARP scan
+2025-03-11 14:18:22,479 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.1.0/24
+2025-03-11 14:18:23,653 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:419): Got 1 ARP responses from 192.168.31.0/24
+2025-03-11 14:18:23,655 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 1 devices.
+2025-03-11 14:18:23,655 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:188): ARP scan found 1 devices
+2025-03-11 14:18:23,655 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:18:23,655 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.31.254
+2025-03-11 14:18:23,655 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.31.254 to scan
+2025-03-11 14:18:23,655 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:18:23,686 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 2 alive hosts.
+2025-03-11 14:18:23,686 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 2 devices on 192.168.31.254
+2025-03-11 14:18:26,485 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.1.254, returning any partial results (0 devices found so far)
+2025-03-11 14:18:26,498 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59495 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:18:26,504 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:18:26] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:18:26,530 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.0.1
+2025-03-11 14:18:26,530 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.0.1
+2025-03-11 14:18:26,531 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.0.1 has 1 potential hosts
+2025-03-11 14:18:26,531 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.0.1
+2025-03-11 14:18:26,531 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.0.1
+2025-03-11 14:18:26,531 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.0.1 is in private network range 192.168.0.0/16
+2025-03-11 14:18:26,531 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.0.1 is a local network
+2025-03-11 14:18:26,531 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.0.1
+2025-03-11 14:18:26,531 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.0.1 to network 192.168.0.0/24 for ARP scan
+2025-03-11 14:18:26,531 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.0.0/24
+2025-03-11 14:18:27,750 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 0 devices.
+2025-03-11 14:18:27,750 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:18:27,751 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.1.254
+2025-03-11 14:18:27,751 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.1.254 to scan
+2025-03-11 14:18:27,751 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:18:27,765 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 1 alive hosts.
+2025-03-11 14:18:27,766 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 1 devices on 192.168.1.254
+2025-03-11 14:18:30,536 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.0.1, returning any partial results (0 devices found so far)
+2025-03-11 14:18:30,537 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59498 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:18:30,540 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:18:30] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:18:30,568 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:73): Gateway detected on 192.168.31.254, suggesting network 192.168.31.0/24 instead of 192.168.1.1
+2025-03-11 14:18:30,568 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:76): Starting discovery on target: 192.168.1.1
+2025-03-11 14:18:30,568 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:57): PingScanner initialized with target: 192.168.1.1
+2025-03-11 14:18:30,569 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:99): Target 192.168.1.1 has 1 potential hosts
+2025-03-11 14:18:30,569 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:116): Using timeout multiplier of 2.0 for 192.168.1.1
+2025-03-11 14:18:30,569 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:172): Starting ping scan of 192.168.1.1
+2025-03-11 14:18:30,569 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:326): Target 192.168.1.1 is in private network range 192.168.0.0/16
+2025-03-11 14:18:30,570 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:179): Target 192.168.1.1 is a local network
+2025-03-11 14:18:30,570 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:183): Performing ARP scan on local network 192.168.1.1
+2025-03-11 14:18:30,570 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:382): Converting single IP 192.168.1.1 to network 192.168.1.0/24 for ARP scan
+2025-03-11 14:18:30,570 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:402): Sending ARP broadcast to 192.168.1.0/24
+2025-03-11 14:18:31,849 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 0 devices.
+2025-03-11 14:18:31,849 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:18:31,850 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.0.1
+2025-03-11 14:18:31,850 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.0.1 to scan
+2025-03-11 14:18:31,850 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:18:32,895 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 0 alive hosts.
+2025-03-11 14:18:32,901 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 0 devices on 192.168.0.1
+2025-03-11 14:18:33,645 [WARNING] network_scanner.web (app.py:141): API request timed out: /api/health
+2025-03-11 14:18:33,647 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:18:33] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:18:34,570 [WARNING] network_scanner.backend.services.scanner_service (scanner_service.py:171): Scan timeout for 192.168.1.1, returning any partial results (0 devices found so far)
+2025-03-11 14:18:34,571 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59502 - "POST /api/discover HTTP/1.1" 200
+2025-03-11 14:18:34,572 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:18:34] "POST /api/discover HTTP/1.1" 200 -
+2025-03-11 14:18:35,893 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:459): ARP scan completed. Found 0 devices.
+2025-03-11 14:18:35,893 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:197): Continuing with ICMP scan to find additional devices
+2025-03-11 14:18:35,893 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:200): Performing ICMP ping scan on 192.168.1.1
+2025-03-11 14:18:35,893 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:232): Single IP 192.168.1.1 to scan
+2025-03-11 14:18:35,894 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:252): Using 20 concurrent threads for scanning
+2025-03-11 14:18:36,914 [INFO] network_scanner.discovery.ping_scanner (ping_scanner.py:296): Ping scan completed. Found 0 alive hosts.
+2025-03-11 14:18:36,915 [INFO] network_scanner.backend.services.scanner_service (scanner_service.py:144): Found 0 devices on 192.168.1.1
+2025-03-11 14:19:01,152 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59512 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:19:01,155 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:19:01] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:19:31,153 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59527 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:19:31,155 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:19:31] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:20:18,936 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59539 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:20:18,938 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:20:18] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:20:31,149 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59553 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:20:31,151 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:20:31] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:21:01,145 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59558 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:21:01,146 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:21:01] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:21:33,145 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59561 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:21:33,146 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:21:33] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:22:33,152 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59570 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:22:33,153 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:22:33] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:23:33,146 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59576 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:23:33,148 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:23:33] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:24:33,138 [INFO] uvicorn.access (h11_impl.py:473): 127.0.0.1:59595 - "GET /api/health HTTP/1.1" 200
+2025-03-11 14:24:33,140 [INFO] werkzeug (_internal.py:97): 127.0.0.1 - - [11/Mar/2025 14:24:33] "GET /api/health HTTP/1.1" 200 -
+2025-03-11 14:24:38,329 [INFO] launcher (launcher.py:117): Shutting down servers...
+2025-03-11 14:24:38,634 [INFO] launcher (launcher.py:117): Shutting down servers...
+2025-03-11 14:24:39,639 [INFO] launcher (launcher.py:124): Shutdown complete. Log file: log/2025-03-11_14-14-46.log

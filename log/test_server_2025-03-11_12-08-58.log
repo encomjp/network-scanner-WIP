@@ -1,0 +1,4 @@
+2025-03-11 12:08:58,744 - INFO - test_server - Logging to file: log/test_server_2025-03-11_12-08-58.log
+2025-03-11 12:08:58,745 - INFO - test_server - Starting test server on http://127.0.0.1:5001
+2025-03-11 12:08:58,766 - WARNING - werkzeug -  * Debugger is active!
+2025-03-11 12:08:58,771 - INFO - werkzeug -  * Debugger PIN: 960-140-736

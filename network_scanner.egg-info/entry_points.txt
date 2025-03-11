@@ -1,2 +1,4 @@
 [console_scripts]
-netscanner = network_scanner.ui.cli.main:main
+netscanner = network_scanner.frontend.cli.main:main
+netscanner-api = network_scanner.backend.api.main:main
+netscanner-web = network_scanner.frontend.web.app:main

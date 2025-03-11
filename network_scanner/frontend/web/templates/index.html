@@ -1,0 +1,520 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Network Scanner{% endblock %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-search display-4 text-primary mb-3"></i>
+                <h5 class="card-title">Device Discovery</h5>
+                <p class="card-text">Discover devices on your network using ping scanning.</p>
+                <a href="/discover" class="btn btn-primary">Discover Devices</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-hdd-network display-4 text-success mb-3"></i>
+                <h5 class="card-title">Port Scanning</h5>
+                <p class="card-text">Scan for open ports and services on target devices.</p>
+                <a href="/services" class="btn btn-success">Scan Ports</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-fingerprint display-4 text-info mb-3"></i>
+                <h5 class="card-title">OS Fingerprinting</h5>
+                <p class="card-text">Identify operating systems running on target devices.</p>
+                <a href="/fingerprint" class="btn btn-info">Fingerprint OS</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-shield-check display-4 text-danger mb-3"></i>
+                <h5 class="card-title">Nmap Scanning</h5>
+                <p class="card-text">Perform comprehensive Nmap scans on target devices.</p>
+                <a href="/nmap" class="btn btn-danger">Nmap Scan</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Recent Discoveries</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" id="recent-devices-table">
+                        <thead>
+                            <tr>
+                                <th>IP Address</th>
+                                <th>Status</th>
+                                <th>Method</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" class="text-center">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Recent Services</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm" id="recent-services-table">
+                        <thead>
+                            <tr>
+                                <th>IP Address</th>
+                                <th>Port</th>
+                                <th>Protocol</th>
+                                <th>Service</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Function to format timestamp
+    function formatTimestamp(timestamp) {
+        if (!timestamp) return '';
+        const date = new Date(timestamp);
+        return date.toLocaleString();
+    }
+    
+    // Function to poll for discovery results
+    function pollForDiscoveryResults() {
+        const tableBody = document.querySelector('#recent-devices-table tbody');
+        
+        // Initial loading message
+        tableBody.innerHTML = '<tr><td colspan="4" class="text-center">Scanning network...</td></tr>';
+        
+        // Set a maximum polling duration (30 seconds to give more time for results)
+        const maxPollingDuration = 30000;
+        const startTime = Date.now();
+        
+        // Create a cache to store found devices
+        let deviceCache = [];
+        
+        // Track the number of consecutive empty results
+        let emptyResultCount = 0;
+        
+        // Function to check for results
+        function checkResults() {
+            const elapsedTime = Math.round((Date.now() - startTime) / 1000);
+            console.log(`Dashboard: Polling for discovery results (elapsed: ${elapsedTime}s)`);
+            
+            // Try scanning the 192.168.22.0/24 network first
+            fetch('/api/discover', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    target: '192.168.22.0/24',
+                    passive: false,
+                    stealth: false,
+                    timeout: 2.0  // Use a longer timeout for this network
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dashboard API response (192.168.22.0/24):', data);
+                
+                if (data.success && data.data && data.data.length > 0) {
+                    console.log(`Dashboard: Found ${data.data.length} devices in 192.168.22.0/24`);
+                    emptyResultCount = 0; // Reset empty result counter
+                    
+                    // Update our device cache with new devices
+                    deviceCache = mergeDevices(deviceCache, data.data);
+                    console.log(`Dashboard: Total unique devices in cache: ${deviceCache.length}`);
+                    
+                    // Display the cached devices (limited to 5)
+                    tableBody.innerHTML = '';
+                    const devices = deviceCache.slice(0, 5);
+                    
+                    devices.forEach(device => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${device.ip}</td>
+                            <td><span class="badge bg-${device.status === 'up' ? 'success' : 'danger'}">${device.status}</span></td>
+                            <td>${device.method}</td>
+                            <td>${formatTimestamp(device.timestamp)}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    
+                    // Continue polling to find more devices
+                    const elapsedTime = Date.now() - startTime;
+                    if (elapsedTime < maxPollingDuration) {
+                        setTimeout(checkResults, 2000);
+                    }
+                    return;
+                }
+                
+                // If no results from 192.168.22.0/24, try 192.168.31.0/24
+                return fetch('/api/discover', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        target: '192.168.31.0/24',
+                        passive: false,
+                        stealth: false,
+                        timeout: 1.0
+                    })
+                });
+            })
+            .then(response => {
+                if (!response || !response.json) return null;
+                return response.json();
+            })
+            .then(data => {
+                if (!data) return;
+                
+                console.log('Dashboard API response (192.168.31.0/24):', data);
+                
+                if (data.success && data.data && data.data.length > 0) {
+                    console.log(`Dashboard: Found ${data.data.length} devices in 192.168.31.0/24`);
+                    emptyResultCount = 0; // Reset empty result counter
+                    
+                    // Update our device cache with new devices
+                    deviceCache = mergeDevices(deviceCache, data.data);
+                    console.log(`Dashboard: Total unique devices in cache: ${deviceCache.length}`);
+                    
+                    // Display the cached devices (limited to 5)
+                    tableBody.innerHTML = '';
+                    const devices = deviceCache.slice(0, 5);
+                    
+                    devices.forEach(device => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${device.ip}</td>
+                            <td><span class="badge bg-${device.status === 'up' ? 'success' : 'danger'}">${device.status}</span></td>
+                            <td>${device.method}</td>
+                            <td>${formatTimestamp(device.timestamp)}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    
+                    // Continue polling to find more devices
+                    const elapsedTime = Date.now() - startTime;
+                    if (elapsedTime < maxPollingDuration) {
+                        setTimeout(checkResults, 2000);
+                    }
+                    return;
+                }
+                
+                console.log('Dashboard: No new devices found in this poll');
+                emptyResultCount++; // Increment empty result counter
+                
+                // No new results, but check if we have cached devices
+                if (deviceCache.length > 0) {
+                    console.log(`Dashboard: Displaying ${deviceCache.length} devices from cache`);
+                    
+                    // Display cached devices
+                    tableBody.innerHTML = '';
+                    const devices = deviceCache.slice(0, 5);
+                    
+                    devices.forEach(device => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${device.ip}</td>
+                            <td><span class="badge bg-${device.status === 'up' ? 'success' : 'danger'}">${device.status}</span></td>
+                            <td>${device.method}</td>
+                            <td>${formatTimestamp(device.timestamp)}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+                
+                // Check if we should continue polling
+                const elapsedTime = Date.now() - startTime;
+                if (elapsedTime < maxPollingDuration) {
+                    // If we've had too many empty results in a row, poll less frequently
+                    const nextPollDelay = emptyResultCount > 3 ? 3000 : 2000;
+                    
+                    // Continue polling
+                    setTimeout(checkResults, nextPollDelay);
+                    
+                    // Update loading message if no devices found yet
+                    if (deviceCache.length === 0) {
+                        tableBody.innerHTML = `<tr><td colspan="4" class="text-center">Scanning network... (${Math.round(elapsedTime / 1000)}s elapsed)</td></tr>`;
+                    }
+                } else {
+                    // Polling timeout reached
+                    if (deviceCache.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="4" class="text-center">No devices found</td></tr>';
+                    }
+                }
+            })
+            .catch(error => {
+                // Error during polling
+                console.error('Dashboard: Error polling for discovery results:', error);
+                
+                // If we have devices in cache, display them
+                if (deviceCache.length > 0) {
+                    console.log(`Dashboard: Displaying ${deviceCache.length} devices from cache after error`);
+                    
+                    tableBody.innerHTML = '';
+                    const devices = deviceCache.slice(0, 5);
+                    
+                    devices.forEach(device => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${device.ip}</td>
+                            <td><span class="badge bg-${device.status === 'up' ? 'success' : 'danger'}">${device.status}</span></td>
+                            <td>${device.method}</td>
+                            <td>${formatTimestamp(device.timestamp)}</td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    return;
+                }
+                
+                // Check if we should continue polling despite the error
+                const elapsedTime = Date.now() - startTime;
+                if (elapsedTime < maxPollingDuration) {
+                    // Continue polling after a short delay
+                    setTimeout(checkResults, 2000);
+                } else {
+                    // Polling timeout reached
+                    tableBody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Error loading devices</td></tr>';
+                }
+            });
+        }
+        
+        // Start polling immediately
+        checkResults();
+    }
+    
+    // Function to merge device lists, avoiding duplicates
+    function mergeDevices(existingDevices, newDevices) {
+        // Create a map of existing devices by IP
+        const deviceMap = {};
+        existingDevices.forEach(device => {
+            deviceMap[device.ip] = device;
+        });
+        
+        // Add or update with new devices
+        newDevices.forEach(device => {
+            // If the device is newer, update it
+            if (!deviceMap[device.ip] || new Date(device.timestamp) > new Date(deviceMap[device.ip].timestamp)) {
+                deviceMap[device.ip] = device;
+            }
+        });
+        
+        // Convert back to array
+        return Object.values(deviceMap);
+    }
+    
+    // Function to poll for port scan results
+    function pollForPortScanResults() {
+        const tableBody = document.querySelector('#recent-services-table tbody');
+        
+        // Initial loading message
+        tableBody.innerHTML = '<tr><td colspan="5" class="text-center">Scanning ports...</td></tr>';
+        
+        // Set a maximum polling duration (10 seconds)
+        const maxPollingDuration = 10000;
+        const startTime = Date.now();
+        
+        // Create a cache to store found services
+        let serviceCache = [];
+        
+        // Function to check for results
+        function checkResults() {
+            console.log(`Dashboard: Polling for port scan results (elapsed: ${Math.round((Date.now() - startTime) / 1000)}s)`);
+            
+            fetch('/api/port-scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    target: '192.168.31.254',
+                    ports: '22,80,443',
+                    stealth: false,
+                    timeout: 1.0,  // Use a short timeout for polling
+                    randomize: false
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.data && data.data.length > 0) {
+                    console.log(`Dashboard: Found ${data.data.length} services in this poll`);
+                    
+                    // Update our service cache with new services
+                    serviceCache = mergeServices(serviceCache, data.data);
+                    console.log(`Dashboard: Total unique services in cache: ${serviceCache.length}`);
+                    
+                    // Display the cached services (limited to 5)
+                    tableBody.innerHTML = '';
+                    const services = serviceCache.slice(0, 5);
+                    
+                    services.forEach(service => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${service.ip}</td>
+                            <td>${service.port}</td>
+                            <td>${service.protocol}</td>
+                            <td>${service.service || 'Unknown'}</td>
+                            <td><span class="badge bg-${service.state === 'open' ? 'success' : 'secondary'}">${service.state}</span></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    
+                    // Continue polling to find more services
+                    const elapsedTime = Date.now() - startTime;
+                    if (elapsedTime < maxPollingDuration) {
+                        setTimeout(checkResults, 2000);
+                    }
+                } else {
+                    console.log('Dashboard: No new services found in this poll');
+                    
+                    // No new results, but check if we have cached services
+                    if (serviceCache.length > 0) {
+                        console.log(`Dashboard: Displaying ${serviceCache.length} services from cache`);
+                        
+                        // Display cached services
+                        tableBody.innerHTML = '';
+                        const services = serviceCache.slice(0, 5);
+                        
+                        services.forEach(service => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${service.ip}</td>
+                                <td>${service.port}</td>
+                                <td>${service.protocol}</td>
+                                <td>${service.service || 'Unknown'}</td>
+                                <td><span class="badge bg-${service.state === 'open' ? 'success' : 'secondary'}">${service.state}</span></td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    }
+                    
+                    // Check if we should continue polling
+                    const elapsedTime = Date.now() - startTime;
+                    if (elapsedTime < maxPollingDuration) {
+                        // Continue polling
+                        setTimeout(checkResults, 2000);
+                        
+                        // Update loading message if no services found yet
+                        if (serviceCache.length === 0) {
+                            tableBody.innerHTML = `<tr><td colspan="5" class="text-center">Scanning ports... (${Math.round(elapsedTime / 1000)}s)</td></tr>`;
+                        }
+                    } else {
+                        // Polling timeout reached
+                        if (serviceCache.length === 0) {
+                            tableBody.innerHTML = '<tr><td colspan="5" class="text-center">No services found</td></tr>';
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                // Error during polling
+                console.error('Dashboard: Error polling for port scan results:', error);
+                
+                // If we have services in cache, display them
+                if (serviceCache.length > 0) {
+                    console.log(`Dashboard: Displaying ${serviceCache.length} services from cache after error`);
+                    
+                    tableBody.innerHTML = '';
+                    const services = serviceCache.slice(0, 5);
+                    
+                    services.forEach(service => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${service.ip}</td>
+                            <td>${service.port}</td>
+                            <td>${service.protocol}</td>
+                            <td>${service.service || 'Unknown'}</td>
+                            <td><span class="badge bg-${service.state === 'open' ? 'success' : 'secondary'}">${service.state}</span></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                    return;
+                }
+                
+                // Check if we should continue polling despite the error
+                const elapsedTime = Date.now() - startTime;
+                if (elapsedTime < maxPollingDuration) {
+                    // Continue polling after a short delay
+                    setTimeout(checkResults, 2000);
+                } else {
+                    // Polling timeout reached
+                    tableBody.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Error loading services</td></tr>';
+                }
+            });
+        }
+        
+        // Start polling immediately
+        checkResults();
+    }
+    
+    // Function to merge service lists, avoiding duplicates
+    function mergeServices(existingServices, newServices) {
+        // Create a map of existing services by IP and port
+        const serviceMap = {};
+        existingServices.forEach(service => {
+            const key = `${service.ip}:${service.port}:${service.protocol}`;
+            serviceMap[key] = service;
+        });
+        
+        // Add or update with new services
+        newServices.forEach(service => {
+            const key = `${service.ip}:${service.port}:${service.protocol}`;
+            // If the service is newer, update it
+            if (!serviceMap[key] || new Date(service.timestamp) > new Date(serviceMap[key].timestamp)) {
+                serviceMap[key] = service;
+            }
+        });
+        
+        // Convert back to array
+        return Object.values(serviceMap);
+    }
+    
+    // Start polling for results when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        pollForDiscoveryResults();
+        pollForPortScanResults();
+    });
+</script>
+{% endblock %} 

@@ -34,10 +34,21 @@ setup(
         "click>=8.0.0",
         "rich>=12.0.0",
         "python-dotenv>=0.19.0",
+        "fastapi>=0.95.0",
+        "uvicorn>=0.21.0",
+        "flask>=2.0.0",
+        "requests>=2.25.0",
+        "flask-cors>=3.0.10",
     ],
     entry_points={
         "console_scripts": [
-            "netscanner=network_scanner.ui.cli.main:main",
+            "netscanner=network_scanner.frontend.cli.main:main",
+            "netscanner-api=network_scanner.backend.api.main:main",
+            "netscanner-web=network_scanner.frontend.web.app:main",
         ],
+    },
+    include_package_data=True,
+    package_data={
+        "network_scanner.frontend.web": ["templates/*"],
     },
 ) 
