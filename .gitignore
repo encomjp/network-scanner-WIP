@@ -1,0 +1,34 @@
+# Log files
+*.log
+log/*.log
+network_scanner/log/*.log
+
+# Python bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+network_scanner.egg-info/
+
+# Virtual environments
+venv/
+env/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.db
+data/*.json
+paused.conf

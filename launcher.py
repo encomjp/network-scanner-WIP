@@ -22,6 +22,30 @@ import datetime
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
+# ANSI color codes for terminal output
+RESET = "\033[0m"
+RED = "\033[31m"
+YELLOW = "\033[33m"
+GREEN = "\033[32m"
+CYAN = "\033[36m"
+
+# Custom formatter with colors
+class ColoredFormatter(logging.Formatter):
+    """Custom formatter to add colors to log levels"""
+    
+    FORMATS = {
+        logging.DEBUG: "%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        logging.INFO: "%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+        logging.WARNING: f"{YELLOW}%(asctime)s - %(levelname)s - %(name)s - %(message)s{RESET}",
+        logging.ERROR: f"{RED}%(asctime)s - %(levelname)s - %(name)s - %(message)s{RESET}",
+        logging.CRITICAL: f"{RED}%(asctime)s - %(levelname)s - %(name)s - %(message)s{RESET}"
+    }
+    
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt)
+        return formatter.format(record)
+
 # Create log directory if it doesn't exist
 log_dir = Path("log")
 log_dir.mkdir(exist_ok=True)
@@ -30,20 +54,25 @@ log_dir.mkdir(exist_ok=True)
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 log_file = log_dir / f"{timestamp}.log"
 
-# Configure logging to both console and file
+# Configure console handler with colors
+console_handler = logging.StreamHandler(sys.stdout)
+console_handler.setFormatter(ColoredFormatter())
+
+# Configure file handler (no colors in file)
+file_handler = RotatingFileHandler(
+    filename=log_file,
+    maxBytes=10 * 1024 * 1024,  # 10 MB
+    backupCount=5,
+    encoding='utf-8'
+)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s'))
+
+# Configure logging
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(sys.stdout),  # Log to console
-        RotatingFileHandler(  # Log to file
-            filename=log_file,
-            maxBytes=10 * 1024 * 1024,  # 10 MB
-            backupCount=5,
-            encoding='utf-8'
-        )
-    ]
+    handlers=[console_handler, file_handler]
 )
+
 logger = logging.getLogger("launcher")
 logger.info(f"Logging to file: {log_file}")
 

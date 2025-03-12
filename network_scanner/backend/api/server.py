@@ -7,23 +7,40 @@ This module provides a FastAPI server for the network scanner.
 import logging
 import os
 import sys
+import time
+import asyncio
+import traceback
 from typing import Dict, List, Optional, Any
 from pathlib import Path
 from logging.handlers import RotatingFileHandler
+import datetime
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import Response, JSONResponse
 
 from network_scanner import __version__
 from network_scanner.core.logging_setup import setup_logging, get_logger
 from network_scanner.backend.services.scanner_service import ScannerService
+from network_scanner.backend.api.dependencies import get_scanner_service
 from network_scanner.backend.api.models import (
     ApiResponse,
     NmapScanRequest,
     DiscoverRequest,
     PortScanRequest,
     FingerprintRequest,
+    NetworkInfoResult,
 )
+from network_scanner.backend.api.routes import (
+    network_routes,
+    scan_routes,
+    device_routes,
+    service_routes,
+    health,
+)
+from network_scanner.core.network_detector import NetworkDetector
 
 # Setup logging
 if 'LOG_FILE' in os.environ:
@@ -36,8 +53,7 @@ else:
     logger = get_logger(__name__)
 
 # Create scanner service
-scanner_service = ScannerService()
-scanner_service.initialize()
+scanner_service = get_scanner_service()
 
 # Create FastAPI app
 app = FastAPI(
@@ -57,19 +73,114 @@ app.add_middleware(
     max_age=3600,
 )
 
-# Add CORS headers to all responses
-@app.middleware("http")
-async def add_cors_headers(request, call_next):
-    response = await call_next(request)
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Credentials"] = "true"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH"
-    response.headers["Access-Control-Allow-Headers"] = "*"
-    # Ensure no caching for API responses
-    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
-    response.headers["Pragma"] = "no-cache"
-    return response
+# Add Gzip compression
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
+class RequestMonitorMiddleware(BaseHTTPMiddleware):
+    """Middleware to monitor request timing and add request ID."""
+    
+    async def dispatch(self, request: Request, call_next):
+        request_id = str(time.time())
+        start_time = time.time()
+        
+        # Add request ID to logger context
+        logger.debug(f"Processing request {request_id}: {request.method} {request.url.path}")
+        
+        try:
+            response = await call_next(request)
+            
+            # Add timing headers
+            process_time = time.time() - start_time
+            response.headers["X-Process-Time"] = str(process_time)
+            response.headers["X-Request-ID"] = request_id
+            
+            logger.debug(f"Request {request_id} completed in {process_time:.3f}s")
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error processing request {request_id}: {str(e)}")
+            logger.error(traceback.format_exc())
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "success": False,
+                    "error": str(e),
+                    "request_id": request_id
+                }
+            )
+
+# Add request monitoring
+app.add_middleware(RequestMonitorMiddleware)
+
+# Include API routers
+app.include_router(network_routes.router, prefix="/api")
+app.include_router(scan_routes.router, prefix="/api")
+app.include_router(device_routes.router, prefix="/api")
+app.include_router(service_routes.router, prefix="/api")
+app.include_router(health.router, prefix="/api")
+
+# Store startup time
+app.state.start_time = time.time()
+app.state.initialized = False
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize services on startup."""
+    try:
+        logger.info("Initializing API server...")
+        
+        # Initialize scanner service with retry
+        max_retries = 3
+        retry_count = 0
+        
+        while retry_count < max_retries:
+            try:
+                success = await scanner_service.initialize()
+                if success:
+                    app.state.initialized = True
+                    logger.info("API server started successfully")
+                    break
+                else:
+                    logger.error("Failed to initialize scanner service, retrying...")
+                    retry_count += 1
+                    await asyncio.sleep(2)  # Wait before retrying
+            except Exception as e:
+                logger.error(f"Error during scanner service initialization: {e}")
+                logger.error(traceback.format_exc())
+                retry_count += 1
+                await asyncio.sleep(2)  # Wait before retrying
+        
+        if not app.state.initialized:
+            logger.error("Failed to initialize scanner service after multiple retries")
+            # Don't exit here, let the server start anyway and handle errors at runtime
+    except Exception as e:
+        logger.error(f"Unexpected error during startup: {e}")
+        logger.error(traceback.format_exc())
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on shutdown."""
+    try:
+        # Cancel any pending tasks
+        if hasattr(scanner_service, '_scan_processor_task'):
+            scanner_service._scan_processor_task.cancel()
+            try:
+                await scanner_service._scan_processor_task
+            except asyncio.CancelledError:
+                pass
+        
+        # Clear any queued scans
+        if hasattr(scanner_service, '_scan_queue'):
+            while not scanner_service._scan_queue.empty():
+                try:
+                    scanner_service._scan_queue.get_nowait()
+                except asyncio.QueueEmpty:
+                    break
+        
+        logger.info("API server shutdown complete")
+    except Exception as e:
+        logger.error(f"Error during shutdown: {e}")
+        logger.error(traceback.format_exc())
 
 @app.get("/", response_model=ApiResponse)
 async def root():
@@ -80,12 +191,17 @@ async def root():
         data={"version": __version__},
     )
 
-
 @app.post("/api/nmap-scan", response_model=ApiResponse)
 async def nmap_scan(request: NmapScanRequest):
     """Perform an Nmap scan on the specified target."""
     try:
-        results = scanner_service.nmap_scan(
+        if not app.state.initialized:
+            return ApiResponse(
+                success=False,
+                error="API server is still initializing. Please try again in a moment."
+            )
+            
+        results = await scanner_service.nmap_scan(
             target=request.target,
             ports=request.ports,
             vuln=request.vuln
@@ -98,34 +214,53 @@ async def nmap_scan(request: NmapScanRequest):
         )
     except Exception as e:
         logger.error(f"Error during Nmap scan: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
+        logger.error(traceback.format_exc())
+        return ApiResponse(success=False, error=str(e))
 
 @app.post("/api/discover", response_model=ApiResponse)
-async def discover(request: DiscoverRequest):
-    """Discover devices on the network using ping scan."""
+async def discover_devices(request: DiscoverRequest) -> ApiResponse:
+    """Discover devices on the network."""
     try:
-        results = scanner_service.discover_devices(
+        # Log the incoming request
+        logger.info(f"[DEBUG] Received discover request: target={request.target}, timeout={request.timeout}, stealth={request.stealth}, passive={request.passive}")
+        
+        if not app.state.initialized:
+            logger.warning(f"[DEBUG] API server not initialized, rejecting discover request for {request.target}")
+            return ApiResponse(
+                success=False,
+                error="API server is still initializing. Please try again in a moment."
+            )
+        
+        logger.info(f"[DEBUG] Processing discover request for target: {request.target}")
+        
+        # Call the scanner service
+        devices = await scanner_service.discover_devices(
             target=request.target,
             timeout=request.timeout,
-            stealth=request.stealth
+            stealth=request.stealth,
+            passive=request.passive
         )
         
-        return ApiResponse(
-            success=True,
-            message=f"Discovery completed for {request.target}",
-            data=results,
-        )
+        # Log the response
+        logger.info(f"[DEBUG] Discover request completed for {request.target}, found {len(devices)} devices")
+        
+        return ApiResponse(success=True, data=devices)
     except Exception as e:
-        logger.error(f"Error during discovery: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
+        logger.error(f"[DEBUG] Error processing discover request for {request.target}: {e}")
+        logger.error(traceback.format_exc())
+        return ApiResponse(success=False, error=str(e))
 
 @app.post("/api/port-scan", response_model=ApiResponse)
 async def port_scan(request: PortScanRequest):
     """Scan ports on the specified target."""
     try:
-        results = scanner_service.scan_ports(
+        if not app.state.initialized:
+            return ApiResponse(
+                success=False,
+                error="API server is still initializing. Please try again in a moment."
+            )
+            
+        results = await scanner_service.scan_ports(
             target=request.target,
             ports=request.ports,
             timeout=request.timeout,
@@ -140,14 +275,20 @@ async def port_scan(request: PortScanRequest):
         )
     except Exception as e:
         logger.error(f"Error during port scan: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
+        logger.error(traceback.format_exc())
+        return ApiResponse(success=False, error=str(e))
 
 @app.post("/api/fingerprint", response_model=ApiResponse)
 async def fingerprint(request: FingerprintRequest):
     """Perform OS fingerprinting on the specified target."""
     try:
-        result = scanner_service.fingerprint_os(
+        if not app.state.initialized:
+            return ApiResponse(
+                success=False,
+                error="API server is still initializing. Please try again in a moment."
+            )
+            
+        result = await scanner_service.fingerprint_os(
             target=request.target,
             confidence=request.confidence
         )
@@ -159,38 +300,22 @@ async def fingerprint(request: FingerprintRequest):
         )
     except Exception as e:
         logger.error(f"Error during fingerprinting: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(traceback.format_exc())
+        return ApiResponse(success=False, error=str(e))
 
-
-@app.get("/api/health", response_model=ApiResponse)
-async def health_check():
-    """Health check endpoint - optimized for quick response."""
-    # This is a lightweight endpoint that doesn't perform any heavy operations
-    # It should respond immediately without accessing any shared resources
-    
-    # Check if there are any active scans by checking the scanner service state
-    # but don't wait for any operations to complete
-    active_operations = False
+@app.get("/api/network-info", response_model=ApiResponse)
+async def get_network_info(request: Request) -> ApiResponse:
+    """Get network information."""
     try:
-        # Non-blocking check for active operations
-        if hasattr(scanner_service, '_active_scans') and scanner_service._active_scans > 0:
-            active_operations = True
-    except Exception:
-        # Ignore any errors - health check should always respond
-        pass
-    
-    if active_operations:
-        return ApiResponse(
-            success=True,
-            message="API is healthy but busy",
-            data={
-                "status": "busy",
-                "active_operations": True
-            }
-        )
-    else:
-        return ApiResponse(
-            success=True,
-            message="API is healthy",
-            data={"status": "ok"}
-        )
+        if not app.state.initialized:
+            return ApiResponse(
+                success=False,
+                error="API server is still initializing. Please try again in a moment."
+            )
+            
+        result = await scanner_service.get_network_info()
+        return ApiResponse(success=True, data=result)
+    except Exception as e:
+        logger.error(f"Error getting network info: {e}")
+        logger.error(traceback.format_exc())
+        return ApiResponse(success=False, error=str(e))

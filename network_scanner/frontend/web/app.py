@@ -89,7 +89,9 @@ def proxy_request(method, path, json=None):
         if path == "/api/health":
             timeout = 3  # Quick timeout for health checks (reduced from 5)
         elif path == "/api/discover" or path == "/api/port-scan":
-            timeout = 30  # Longer timeout for scanning operations
+            timeout = 60  # Longer timeout for scanning operations
+        elif path == "/api/network-info":
+            timeout = 20  # Longer timeout for network detection
         else:
             timeout = 10  # Default timeout
         
@@ -411,6 +413,51 @@ def handle_forbidden(e):
     })
     response.status_code = 403
     return response
+
+@app.route('/api/discover-local-fallback', methods=['POST'])
+def discover_local_fallback():
+    """Fallback endpoint for local network scanning when the API server is not available."""
+    try:
+        # Create a basic response with localhost and common gateway IPs
+        results = []
+        
+        # Add localhost
+        results.append({
+            'ip': '127.0.0.1',
+            'status': 'up',
+            'method': 'direct',
+            'timestamp': datetime.datetime.now().isoformat(),
+            'hostname': 'localhost'
+        })
+        
+        # Add common gateway IPs
+        gateway_ips = [
+            {'ip': '192.168.31.254', 'name': 'Xiaomi/MiWiFi Gateway'},
+            {'ip': '192.168.1.1', 'name': 'Common Gateway'},
+            {'ip': '192.168.0.1', 'name': 'Common Gateway'},
+            {'ip': '10.0.0.1', 'name': 'Enterprise Gateway'}
+        ]
+        
+        for gateway in gateway_ips:
+            results.append({
+                'ip': gateway['ip'],
+                'status': 'likely',
+                'method': 'suggestion',
+                'timestamp': datetime.datetime.now().isoformat(),
+                'hostname': gateway['name']
+            })
+        
+        return jsonify({
+            'success': True,
+            'message': 'Fallback local network scan completed',
+            'data': results
+        })
+    except Exception as e:
+        logger.error(f"Error in fallback local scan: {str(e)}")
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
 
 def main():
     """Run the Flask application."""

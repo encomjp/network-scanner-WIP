@@ -1,0 +1,43 @@
+/* Discovery Page Specific Styles */
+
+/* Scan Status */
+#scan-status .progress {
+    height: 5px;
+    margin-top: 8px;
+}
+
+/* Network Detection */
+#network-info {
+    min-height: 80px;
+}
+
+/* Results Table */
+#results-table .badge {
+    font-size: 0.8rem;
+    padding: 0.35em 0.65em;
+}
+
+/* Button Groups */
+.btn-group-sm > .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+/* Network Selection Buttons */
+.network-btn {
+    margin: 2px;
+}
+
+/* Container for network suggestions */
+.network-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 15px;
+    }
+}

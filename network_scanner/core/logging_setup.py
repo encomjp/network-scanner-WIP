@@ -12,9 +12,43 @@ import sys
 from pathlib import Path
 from typing import Optional, Union
 
+# ANSI color codes for terminal output
+RESET = "\033[0m"
+RED = "\033[31m"
+YELLOW = "\033[33m"
+GREEN = "\033[32m"
+CYAN = "\033[36m"
+BLUE = "\033[34m"
+
 # Define log format constants
 DEFAULT_LOG_FORMAT = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 DEBUG_LOG_FORMAT = "%(asctime)s [%(levelname)s] %(name)s (%(filename)s:%(lineno)d): %(message)s"
+
+class ColoredFormatter(logging.Formatter):
+    """Custom formatter to add colors to log levels"""
+    
+    def __init__(self, fmt=None, datefmt=None, style='%', debug_mode=False):
+        super().__init__(fmt, datefmt, style)
+        self.debug_mode = debug_mode
+        
+    def format(self, record):
+        # Choose format based on debug mode
+        base_format = DEBUG_LOG_FORMAT if self.debug_mode else DEFAULT_LOG_FORMAT
+        
+        # Apply colors based on log level
+        if record.levelno >= logging.CRITICAL:
+            colored_format = f"{RED}{base_format}{RESET}"
+        elif record.levelno >= logging.ERROR:
+            colored_format = f"{RED}{base_format}{RESET}"
+        elif record.levelno >= logging.WARNING:
+            colored_format = f"{YELLOW}{base_format}{RESET}"
+        elif record.levelno >= logging.INFO:
+            colored_format = base_format  # No color for INFO
+        else:  # DEBUG and below
+            colored_format = f"{BLUE}{base_format}{RESET}"
+            
+        formatter = logging.Formatter(colored_format)
+        return formatter.format(record)
 
 def setup_logging(
     log_level: Union[int, str] = logging.INFO,
@@ -43,7 +77,8 @@ def setup_logging(
     
     # Select log format based on debug mode
     log_format = DEBUG_LOG_FORMAT if debug_mode else DEFAULT_LOG_FORMAT
-    formatter = logging.Formatter(log_format)
+    plain_formatter = logging.Formatter(log_format)
+    colored_formatter = ColoredFormatter(debug_mode=debug_mode)
     
     # Configure root logger
     root_logger = logging.getLogger()
@@ -56,7 +91,7 @@ def setup_logging(
     # Add console handler if requested
     if log_to_console:
         console_handler = logging.StreamHandler(sys.stdout)
-        console_handler.setFormatter(formatter)
+        console_handler.setFormatter(colored_formatter)
         console_handler.setLevel(log_level)
         root_logger.addHandler(console_handler)
     
@@ -71,7 +106,7 @@ def setup_logging(
             maxBytes=max_file_size,
             backupCount=backup_count
         )
-        file_handler.setFormatter(formatter)
+        file_handler.setFormatter(plain_formatter)  # No colors in log file
         file_handler.setLevel(log_level)
         root_logger.addHandler(file_handler)
     
